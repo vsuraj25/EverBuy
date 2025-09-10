@@ -126,3 +126,8 @@ STATIC_ROOT = BASE_DIR / 'static'
 STATICFILES_DIRS = [
     'EverBuy/static',
 ]
+
+## Media File Configuration
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

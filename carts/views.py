@@ -77,7 +77,7 @@ def remove_product_from_cart(request, product_id):
         cart_item.cart_quantity -= 1
         cart_item.save()
     else:
-        cart.delete()
+        cart_item.delete()
     return redirect('cart')
 
 def remove_cart_item(request, product_id):

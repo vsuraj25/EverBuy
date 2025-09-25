@@ -2,6 +2,10 @@ from django.db import models
 from category.models import Category
 from django.urls import reverse
 
+variation_category_choices = (
+    ('color', 'color'),
+    ('size', 'size')
+)
 class Product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -19,5 +23,15 @@ class Product(models.Model):
     
     def get_url(self):
         return reverse('product_detail', args = [self.category.slug, self.slug])
+    
+class Variation(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    variation_category = models.CharField(max_length=100, choices=variation_category_choices)
+    variation_value = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.product
     
 

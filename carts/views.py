@@ -13,7 +13,8 @@ def get_tax(amount, tax_perc = 2):
     return (tax_perc * amount)/ 100
 
 def cart(request):
-
+    total, quantity, tax, grand_total = 0, 0, 0, 0
+    cart_items = {}
     try:
         cart = Cart.objects.get(cart_id= _cart_id(request))
         cart_items = CartItem.objects.filter(cart = cart, is_active =True)
